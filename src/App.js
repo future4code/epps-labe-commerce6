@@ -8,7 +8,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Filters />
-        <Cards />
+        <Cards /> 
+        <Filters />
       </div>
     )
   }
