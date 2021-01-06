@@ -24,7 +24,7 @@ export const ContainerCards = styled.div`
 
 export const ItemCard = styled.div`
   border: 1px solid black;
-  margin-top: 0.5em;
+  margin-top: 0,5em;
 `;
 
 export const ButtonAddCar = styled.button`

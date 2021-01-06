@@ -8,16 +8,16 @@ export default class Filters extends React.Component {
         <h1>Filtros:</h1>
         <div>
           <Texts>Valor Mínimo: </Texts>
-          <input type="number" />
+          <input min='0'type="number" />
         </div>
 
         <div>
           <Texts>Valor Máximo: </Texts>
-          <input type="number" />
+          <input min='0' type="number" />
         </div>
 
         <div>
-          <Texts>Buscar Produto: </Texts>
+          <Texts>uscar Produto: </Texts>
           <input type="text" />
         </div>
       </InputsFilters>
