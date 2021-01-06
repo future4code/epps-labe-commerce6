@@ -7,23 +7,19 @@ export default class Filters extends React.Component {
       <InputsFilters>
         <h1>Filtros:</h1>
         <div>
-            <Texts>Valor Mínimo: </Texts>
-            <input type="number" 
-            />
-        </div>
-            
-        <div>
-            <Texts>Valor Máximo: </Texts>
-            <input type="number" 
-            />
+          <Texts>Valor Mínimo: </Texts>
+          <input type="number" />
         </div>
 
         <div>
-            <Texts>Buscar Produto: </Texts>
-            <input type="text" 
-            />
+          <Texts>Valor Máximo: </Texts>
+          <input type="number" />
         </div>
-        
+
+        <div>
+          <Texts>Buscar Produto: </Texts>
+          <input type="text" />
+        </div>
       </InputsFilters>
     );
   }
