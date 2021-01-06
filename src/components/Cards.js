@@ -7,15 +7,15 @@ export default class Cards extends React.Component {
       <ContainerCards>
         <ItemCard>
           <img
-            src="https://picsum.photos/300/300?a=1"
+            src={this.props.itemPhoto}
             alt="Imagem do produto"
           />
-          <p>Item 1</p>
-          <p>R$ </p>
+          <p>{this.props.itemName}</p>
+          <p>R$ {this.props.priceItem}</p>
           <ButtonAddCar>Adicionar ao carrinho</ButtonAddCar>
         </ItemCard>
 
-        <ItemCard>
+        {/* <ItemCard>
           <img
             src="https://picsum.photos/300/300?a=2"
             alt="Imagem do produto"
@@ -83,7 +83,7 @@ export default class Cards extends React.Component {
           <p>Item 8</p>
           <p>R$ </p>
           <ButtonAddCar>Adicionar ao carrinho</ButtonAddCar>
-        </ItemCard>
+        </ItemCard> */}
       </ContainerCards>
     );
   }
