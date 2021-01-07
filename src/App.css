@@ -5,7 +5,8 @@
 .App {
   text-align: center;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 0.5em;
 }
 
 .App-logo {

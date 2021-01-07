@@ -1,12 +1,12 @@
 import React from "react";
-import { ItemCard, ContainerCards, ButtonAddCar } from "./styled";
+import { ItemCard, ContainerCards, ButtonAddCar, Images } from "./styled";
 
 export default class Cards extends React.Component {
   render() {
     return (
       <ContainerCards>
         <ItemCard>
-          <img
+          <Images
             src={this.props.itemPhoto}
             alt="Imagem do produto"
           />
