@@ -14,37 +14,37 @@ class App extends React.Component {
       },
       {
         img: "https://picsum.photos/300/300?a=2",
-        item:`item ${2}`,
+        item:`juliana`,
         price: 2000,
       },
       {
         img: "https://picsum.photos/300/300?a=3",
-        item: `item ${3}`,
+        item: `Ana`,
         price: 25.50,
       },
       {
         img: "https://picsum.photos/300/300?a=4",
-        item: `item ${4}`,
+        item: `Felipe`,
         price: 25.95,
       },
       {
         img: "https://picsum.photos/300/300?a=5",
-        item: `item ${5}`,
+        item: `Labenu`,
         price: 789.87,
       },
       {
         img: "https://picsum.photos/300/300?a=6",
-        item: `item ${6}`,
+        item: `Amanda`,
         price: 453.28,
       },
       {
         img: "https://picsum.photos/300/300?a=7",
-        item: `item ${7}`,
+        item: `Laís`,
         price: 236.63,
       },
       {
         img: "https://picsum.photos/300/300?a=8",
-        item: `item ${8}`,
+        item: `Leticia`,
         price: 456.98,
       },
     ],
@@ -63,6 +63,17 @@ class App extends React.Component {
 
     this.setState({
       inputValueMax: valueMax
+    })
+  }
+  filterName = (e) =>{
+    const value = e.target.value
+    const filterItem = this.state.itemCard.filter((produto) => {
+      console.log(produto.item)
+      if(produto.item === value){
+        return (
+          this.setState({itemCard: filterItem})
+        )
+      }
     })
   }
   render() {
@@ -90,7 +101,7 @@ class App extends React.Component {
           <input  value={this.state.inputValueMax} onChange={this.onChangeValueMax} min='0' type="number" />
 
           <Texts>Buscar Produto: </Texts>
-          <input type="text" />
+          <input onChange={this.filterName} type="text" />
         </InputsFilters>
 
         {/* <Cards /> */}
