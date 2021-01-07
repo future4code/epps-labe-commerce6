@@ -2,24 +2,25 @@ import React from "react";
 import "./App.css";
 import Filters from "./components/Filters";
 import Cards from "./components/Cards";
+import { InputsFilters, Texts } from "./components/styled";
 
 class App extends React.Component {
   state = {
     itemCard: [
       {
         img: "https://picsum.photos/300/300?a=1",
-        item: `item ${1}`,
+        item: `Teste`,
         price: 1000,
       },
       {
         img: "https://picsum.photos/300/300?a=2",
-        item: `item ${2}`,
+        item:`item ${2}`,
         price: 2000,
       },
       {
         img: "https://picsum.photos/300/300?a=3",
         item: `item ${3}`,
-        price: 25.5,
+        price: 25.50,
       },
       {
         img: "https://picsum.photos/300/300?a=4",
@@ -47,25 +48,50 @@ class App extends React.Component {
         price: 456.98,
       },
     ],
-    valueMin: 0,
   };
+
+  onChangeValueMin = (e) => {
+    const valueMin = e.target.value
+
+    this.setState({
+      inputValueMin: valueMin
+    })
+  }
+
+  onChangeValueMax = (e) =>{
+    const valueMax = e.target.value
+
+    this.setState({
+      inputValueMax: valueMax
+    })
+  }
   render() {
     const itemList = this.state.itemCard.map((item) => {
       return (
-        <div key={item.item}>
-          <Cards>
-              itemPhoto = {item.img}
+          // console.log(item)
 
-              itemName = {item.item}
-              priceItem ={item.price}
-          </Cards>
+        <div >
+          <Cards
+            itemPhoto={item.img}
+            itemName={item.item}
+            priceItem={item.price}
+          />
           
         </div>
+        
       );
     });
     return (
       <div className="App">
-        <Filters />
+        <InputsFilters>
+          <Texts>Valor Mínimo: </Texts>
+          <input value={this.state.inputValueMin} onChange={this.onChangeValueMin} min="0" type="number" />
+          <Texts>Valor Máximo: </Texts>
+          <input  value={this.state.inputValueMax} onChange={this.onChangeValueMax} min='0' type="number" />
+
+          <Texts>Buscar Produto: </Texts>
+          <input type="text" />
+        </InputsFilters>
 
         {/* <Cards /> */}
         {itemList}
