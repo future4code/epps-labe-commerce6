@@ -5,10 +5,10 @@ export default class Filters extends React.Component {
   render() {
     return (
       <InputsFilters>
-        <h1>Filtros:</h1>
+        {/* <h1>Filtros:</h1>
         <div>
           <Texts>Valor Mínimo: </Texts>
-          <input min='0'type="number" />
+          <input min='0'type="number"/>
         </div>
 
         <div>
@@ -17,9 +17,9 @@ export default class Filters extends React.Component {
         </div>
 
         <div>
-          <Texts>uscar Produto: </Texts>
+          <Texts>Buscar Produto: </Texts>
           <input type="text" />
-        </div>
+        </div> */}
       </InputsFilters>
     );
   }

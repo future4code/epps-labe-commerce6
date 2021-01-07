@@ -15,6 +15,8 @@ export const Texts = styled.span`
   font-size: 19px;
 `;
 
+
+
 export const ContainerCards = styled.div`
   margin-top: 0.5em;
   /* display: grid; */
@@ -28,6 +30,7 @@ export const Images = styled.img`
     padding: 1em;
     width: 30vh;
 `;
+
 
 export const ItemCard = styled.div`
   border: 1px solid black;
