@@ -3,7 +3,6 @@ import "./App.css";
 import Filters from "./components/Filters";
 import Cards from "./components/Cards";
 
-
 class App extends React.Component {
   state = {
     itemCard: [
@@ -14,13 +13,13 @@ class App extends React.Component {
       },
       {
         img: "https://picsum.photos/300/300?a=2",
-        item:`item ${2}`,
+        item: `item ${2}`,
         price: 2000,
       },
       {
         img: "https://picsum.photos/300/300?a=3",
         item: `item ${3}`,
-        price: 25.50,
+        price: 25.5,
       },
       {
         img: "https://picsum.photos/300/300?a=4",
@@ -48,26 +47,29 @@ class App extends React.Component {
         price: 456.98,
       },
     ],
+    valueMin: 0,
   };
   render() {
     const itemList = this.state.itemCard.map((item) => {
-      return(
+      return (
         <div key={item.item}>
-          <Cards
-          itemPhoto = {item.img}
-          itemName = {item.item}
-          priceItem ={item.price}
-          />
+          <Cards>
+              itemPhoto = {item.img}
+
+              itemName = {item.item}
+              priceItem ={item.price}
+          </Cards>
+          
         </div>
-      )
-    })
+      );
+    });
     return (
       <div className="App">
         <Filters />
 
         {/* <Cards /> */}
         {itemList}
-
+        <Filters />
       </div>
     );
   }

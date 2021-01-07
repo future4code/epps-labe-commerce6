@@ -2,7 +2,9 @@ import React from "react";
 import { ItemCard, ContainerCards, ButtonAddCar } from "./styled";
 
 export default class Cards extends React.Component {
+
   render() {
+   
     return (
       <ContainerCards>
         <ItemCard>
@@ -15,7 +17,7 @@ export default class Cards extends React.Component {
           <ButtonAddCar>Adicionar ao carrinho</ButtonAddCar>
         </ItemCard>
 
-        {/* <ItemCard>
+         {/* <ItemCard>
           <img
             src="https://picsum.photos/300/300?a=2"
             alt="Imagem do produto"

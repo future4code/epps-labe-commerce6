@@ -15,12 +15,15 @@ export const Texts = styled.span`
   font-size: 19px;
 `;
 
+
+
 export const ContainerCards = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 1em;
   column-gap: 2em;
 `;
+
 
 export const ItemCard = styled.div`
   border: 1px solid black;
