@@ -4,7 +4,7 @@ import "./App.css";
 import Cards from "./components/Cards";
 import { InputsFilters, Texts } from "./components/styled";
 import styled from "styled-components";
-import CartButton from "./components/Button";
+// import CartButton from "./components/Button";
 
 const Container = styled.div`
   width: 90%;
@@ -19,12 +19,12 @@ const CardContainer = styled.div`
   grid-column-gap: 10px;
 `;
 
-const ContainerCenter = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+// const ContainerCenter = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
 
-`
+// `
 
 // const CartItem = styled.div`
 //   width: 100px;
@@ -34,46 +34,56 @@ class App extends React.Component {
   state = {
     itemCard: [
       {
+        id:1,
         img: "https://picsum.photos/300/300?a=1",
         item: `Teste`,
         price: 1,
       },
       {
+        id:2,
         img: "https://picsum.photos/300/300?a=2",
         item: `juliana`,
         price: 2000,
       },
       {
+        id:3,
         img: "https://picsum.photos/300/300?a=3",
         item: `Ana`,
         price: 25.5,
       },
       {
+        id:4,
         img: "https://picsum.photos/300/300?a=4",
         item: `Felipe`,
         price: 25.95,
       },
       {
+        id:5,
+       
         img: "https://picsum.photos/300/300?a=5",
         item: `Labenu`,
         price: 789.87,
       },
       {
+        id:6,
         img: "https://picsum.photos/300/300?a=6",
         item: `Amanda`,
         price: 453.28,
       },
       {
+        id: 7,
         img: "https://picsum.photos/300/300?a=7",
         item: `Laís`,
         price: 236.63,
       },
       {
+        id: 8,
         img: "https://picsum.photos/300/300?a=8",
         item: `Leticia`,
         price: 456.98,
       },
     ],
+    cart: [],
     inputValueMin: 0,
     inputValueMax: Infinity,
     inputText: "",
@@ -156,16 +166,24 @@ class App extends React.Component {
   
   };
 
+  addCartItem = (e) =>{
+    console.log(e.key)
+
+  }
+
   render() {
     const listaFiltrada = this.getFilterAddLista()
     const itemList = listaFiltrada.map((item) => {
       return (
-        <div>
-          <Cards
+        <div key={item.id}>
+          <Cards 
+          
+            key={item.id}
             itemPhoto={item.img}
             itemName={item.item}
             priceItem={item.price}
-          />
+            addCartItem={this.addCartItem}
+            />
         </div>
       );
     })
@@ -201,6 +219,7 @@ class App extends React.Component {
               </div> */}
               
               {itemList}
+              
             </CardContainer>
   
         <InputsFilters></InputsFilters>
