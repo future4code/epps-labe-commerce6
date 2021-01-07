@@ -76,6 +76,7 @@ class App extends React.Component {
     ],
     inputValueMin: 0,
     inputValueMax: Infinity,
+    inputText: "",
     cartVisible: false,
   };
 
@@ -117,18 +118,30 @@ class App extends React.Component {
     // })
   };
 
+  filterName = e =>{
+    const valueText = e.target.value;
+    this.setState({
+      inputText: valueText
+    })
+
+    console.log(valueText)
+
+  }
+
   getFilterAddLista = () =>{
-    console.log(this.state.inputValueMin)
-    console.log(this.state.inputValueMin > 0)
+
     return this.state.itemCard
       .filter((produto) =>{
-      console.log(produto.price > this.state.inputValueMin)
+      
       return (this.state.inputValueMin > 0 ? produto.price > this.state.inputValueMin : produto)
       
     }
     )
     .filter((produto) =>{
       return(this.state.inputValueMax < Infinity ? produto.price < this.state.inputValueMax : produto)
+    }).filter((produto) =>{
+      const produtoNome = produto.item.toLowerCase()
+      return (produtoNome.indexOf(this.state.inputText.toLowerCase()) > -1)
     })
     
     // console.log(filter)
@@ -139,7 +152,7 @@ class App extends React.Component {
     this.setState({
       cartVisible: !this.state.cartVisible,
     });
-    console.log(this.state.cartVisible)
+   
   
   };
 
