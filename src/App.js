@@ -66,15 +66,32 @@ class App extends React.Component {
         price: 456.98,
       },
     ],
+    inputValueMin: null,
     cartVisible: false,
   };
 
   onChangeValueMin = (e) => {
     const valueMin = e.target.value;
-
     this.setState({
       inputValueMin: valueMin,
     });
+    
+    const filterValueMin = this.state.itemCard.filter((produto) =>{
+      return(produto.price >= valueMin )
+      
+    })
+
+    this.setState({
+      itemCard: filterValueMin
+    })
+    // console.log(valueMin)
+    // console.log(this.state.inputValueMin)
+    // console.log(filterValueMin)
+
+  
+
+
+
   };
 
   onChangeValueMax = (e) => {
@@ -138,8 +155,8 @@ class App extends React.Component {
         {/* <Cards /> */}
         <CardContainer>{itemList}</CardContainer>
 
-        {if(this.state.cartVisible === true){
-
+        
+{/* 
           <InputsFilters>
             <Texts>Valor Mínimo: </Texts>
             <input
@@ -159,8 +176,8 @@ class App extends React.Component {
             <Texts>Buscar Produto: </Texts>
             <input onChange={this.filterName} type="text" />
           </InputsFilters>
-          }
-        }
+         */}
+        
 
         <CartButton onClick={this.cartVisible} />
       </Container>
