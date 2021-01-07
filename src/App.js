@@ -1,9 +1,27 @@
 import React from "react";
 import "./App.css";
-import Filters from "./components/Filters";
+// import Filters from "./components/Filters";
 import Cards from "./components/Cards";
 import { InputsFilters, Texts } from "./components/styled";
+import styled from "styled-components";
+import CartButton from "./components/Button";
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: row;
+`;
+
+const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+`;
+
+// const CartItem = styled.div`
+//   width: 100px;
+//   border: 1px solid black;
+// `;
 class App extends React.Component {
   state = {
     itemCard: [
@@ -14,13 +32,13 @@ class App extends React.Component {
       },
       {
         img: "https://picsum.photos/300/300?a=2",
-        item:`juliana`,
+        item: `juliana`,
         price: 2000,
       },
       {
         img: "https://picsum.photos/300/300?a=3",
         item: `Ana`,
-        price: 25.50,
+        price: 25.5,
       },
       {
         img: "https://picsum.photos/300/300?a=4",
@@ -48,66 +66,104 @@ class App extends React.Component {
         price: 456.98,
       },
     ],
+    cartVisible: false,
   };
 
   onChangeValueMin = (e) => {
-    const valueMin = e.target.value
+    const valueMin = e.target.value;
 
     this.setState({
-      inputValueMin: valueMin
-    })
-  }
+      inputValueMin: valueMin,
+    });
+  };
 
-  onChangeValueMax = (e) =>{
-    const valueMax = e.target.value
+  onChangeValueMax = (e) => {
+    const valueMax = e.target.value;
 
     this.setState({
-      inputValueMax: valueMax
-    })
-  }
-  filterName = (e) =>{
-    const value = e.target.value
-    const filterItem = this.state.itemCard.filter((produto) => {
-      console.log(produto.item)
-      if(produto.item === value){
-        return (
-          this.setState({itemCard: filterItem})
-        )
-      }
-    })
-  }
+      inputValueMax: valueMax,
+    });
+  };
+  // filterName = (e) => {
+  //   const value = e.target.value;
+  //   const filterItem = this.state.itemCard.filter((produto) => {
+  //     console.log(produto.item);
+  //     if (produto.item === value) {
+  //       return this.setState({ itemCard: filterItem });
+  //     }
+  //   });
+  // };
+
+  cartVisible = () => {
+    this.setState({
+      cartVisible: !this.state.cartVisible,
+    });
+    console.log(this.state.cartVisible)
+  };
+
   render() {
     const itemList = this.state.itemCard.map((item) => {
       return (
-          // console.log(item)
-
-        <div >
+        <div>
           <Cards
             itemPhoto={item.img}
             itemName={item.item}
             priceItem={item.price}
           />
-          
         </div>
-        
       );
     });
     return (
-      <div className="App">
+      <Container cartVisible={this.state.cartVisible}>
         <InputsFilters>
           <Texts>Valor Mínimo: </Texts>
-          <input value={this.state.inputValueMin} onChange={this.onChangeValueMin} min="0" type="number" />
+          <input
+            value={this.state.inputValueMin}
+            onChange={this.onChangeValueMin}
+            min="0"
+            type="number"
+          />
           <Texts>Valor Máximo: </Texts>
-          <input  value={this.state.inputValueMax} onChange={this.onChangeValueMax} min='0' type="number" />
+          <input
+            value={this.state.inputValueMax}
+            onChange={this.onChangeValueMax}
+            min="0"
+            type="number"
+          />
 
           <Texts>Buscar Produto: </Texts>
           <input onChange={this.filterName} type="text" />
         </InputsFilters>
 
         {/* <Cards /> */}
-        {itemList}
-        <Filters />
-      </div>
+        <CardContainer>{itemList}</CardContainer>
+
+        {if(this.state.cartVisible === true){
+
+          <InputsFilters>
+            <Texts>Valor Mínimo: </Texts>
+            <input
+              value={this.state.inputValueMin}
+              onChange={this.onChangeValueMin}
+              min="0"
+              type="number"
+            />
+            <Texts>Valor Máximo: </Texts>
+            <input
+              value={this.state.inputValueMax}
+              onChange={this.onChangeValueMax}
+              min="0"
+              type="number"
+            />
+
+            <Texts>Buscar Produto: </Texts>
+            <input onChange={this.filterName} type="text" />
+          </InputsFilters>
+          }
+        }
+
+        <CartButton onClick={this.cartVisible} />
+      </Container>
     );
   }
 }
