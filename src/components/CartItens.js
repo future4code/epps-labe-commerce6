@@ -9,23 +9,20 @@ const ContainerCartItem = styled.div`
 `
 
 
+
 export default class CartItem extends React.Component{
     render(){
-        console.log(this.props.estado)
         const cartItem = this.props.estado.map((produto) =>{
-
+            console.log(produto.id)
             return(
-                <div>
+                <div key={produto.id}>
                 <p>Nome do Produto:{produto.item}</p>
                 
                 <p> R$: {produto.price}</p>
+                <button onClick={() => this.props.remove(this.props.id)}>X</button>
                 </div>
             )
-            
-
         })
-
-        
         return(
             <ContainerCartItem>
                 <p>{cartItem}</p>          
