@@ -4,6 +4,7 @@ import "./App.css";
 import Cards from "./components/Cards";
 import { InputsFilters, Texts } from "./components/styled";
 import styled from "styled-components";
+import CartItem from "./components/CartItens";
 // import CartButton from "./components/Button";
 
 const Container = styled.div`
@@ -88,7 +89,6 @@ class App extends React.Component {
     this.setState({
       inputValueMin: valueMin,
     });
-
   };
 
   onChangeValueMax = (e) => {
@@ -96,7 +96,6 @@ class App extends React.Component {
     this.setState({
       inputValueMax: valueMax,
     });
-
   };
 
   filterName = (e) => {
@@ -136,29 +135,13 @@ class App extends React.Component {
   };
 
   addCartItem = (id) => {
-    const addItem = this.state.itemCard.map((item) => {
-      if(item.id === id){
-       
-        const newItem = {
-          // ...item,
-          id: item.id,
-          nome: item.item,
-          price: item.price
-        }
-        return  console.log(item.nome)
-      }else {
-        return this.state.cart
-      }
-      
-    })
-
+    const addItem = this.state.itemCard.filter((item) => {
+      return item.id === id;
+    });
+    const newCart = [...this.state.cart, addItem[0]];
     this.setState({
-      cart: addItem
-    })
-
-    // console.log(this.state.cart)
-    
-    
+      cart: newCart,
+    });
   };
 
   render() {
@@ -177,13 +160,10 @@ class App extends React.Component {
       );
     });
 
+    // console.log(this.state.cart)
 
-    // const cartList = this.state.cart.map((item) =>{
-    //   return(
-    //     console.log(item)
-    //   )
-      
-    // })
+    
+
 
     return (
       <div className="App">
@@ -218,13 +198,13 @@ class App extends React.Component {
 
             {itemList}
           </CardContainer>
-          {this.state.cartVisible && (
-          <InputsFilters></InputsFilters>)}
+          {this.state.cartVisible && ( <CartItem estado={this.state.cart}/>)}
         </Container>
         {/* <CartButton showCart={this.cartVisible}></CartButton> */}
         <button onClick={this.cartVisible}>Teste</button>
       </div>
     );
+
   }
 }
 
