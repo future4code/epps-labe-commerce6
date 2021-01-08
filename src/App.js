@@ -4,13 +4,17 @@ import "./App.css";
 import Cards from "./components/Cards";
 import { InputsFilters, Texts } from "./components/styled";
 import styled from "styled-components";
-// import CartButton from "./components/Button";
+import CartButton from "./components/Button";
 
 const Container = styled.div`
-  width: 90%;
+  width: 99.8%;
+  height: 99vh;
+  padding: 0px;
+  margin: 0px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: row;
+  border: 1px solid red;
 `;
 
 const CardContainer = styled.div`
@@ -19,53 +23,42 @@ const CardContainer = styled.div`
   grid-column-gap: 10px;
 `;
 
-// const ContainerCenter = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-
-// `
-
-// const CartItem = styled.div`
-//   width: 100px;
-//   border: 1px solid black;
-// `;
 class App extends React.Component {
   state = {
     itemCard: [
       {
-        id:1,
+        id: 1,
         img: "https://picsum.photos/300/300?a=1",
         item: `Teste`,
         price: 1,
       },
       {
-        id:2,
+        id: 2,
         img: "https://picsum.photos/300/300?a=2",
         item: `juliana`,
         price: 2000,
       },
       {
-        id:3,
+        id: 3,
         img: "https://picsum.photos/300/300?a=3",
         item: `Ana`,
         price: 25.5,
       },
       {
-        id:4,
+        id: 4,
         img: "https://picsum.photos/300/300?a=4",
         item: `Felipe`,
         price: 25.95,
       },
       {
-        id:5,
-       
+        id: 5,
+
         img: "https://picsum.photos/300/300?a=5",
         item: `Labenu`,
         price: 789.87,
       },
       {
-        id:6,
+        id: 6,
         img: "https://picsum.photos/300/300?a=6",
         item: `Amanda`,
         price: 453.28,
@@ -90,17 +83,16 @@ class App extends React.Component {
     cartVisible: false,
   };
 
-
   onChangeValueMin = (e) => {
     const valueMin = e.target.value;
     this.setState({
       inputValueMin: valueMin,
     });
-    
+
     // const filterValueMin = this.state.itemCard.filter((produto) =>{
-     
+
     //   return(produto.price >= valueMin )
-      
+
     // })
 
     // this.setState({
@@ -116,8 +108,7 @@ class App extends React.Component {
     this.setState({
       inputValueMax: valueMax,
     });
-    
-    
+
     // const filterValueMax = this.state.itemCard.filter((produto) =>{
     //   console.log(produto)
     //   return(console.log(produto.price < valueMax))
@@ -128,68 +119,65 @@ class App extends React.Component {
     // })
   };
 
-  filterName = e =>{
+  filterName = (e) => {
     const valueText = e.target.value;
     this.setState({
-      inputText: valueText
-    })
+      inputText: valueText,
+    });
 
-    console.log(valueText)
+    console.log(valueText);
+  };
 
-  }
-
-  getFilterAddLista = () =>{
-
+  getFilterAddLista = () => {
     return this.state.itemCard
-      .filter((produto) =>{
-      
-      return (this.state.inputValueMin > 0 ? produto.price > this.state.inputValueMin : produto)
-      
-    }
-    )
-    .filter((produto) =>{
-      return(this.state.inputValueMax < Infinity ? produto.price < this.state.inputValueMax : produto)
-    }).filter((produto) =>{
-      const produtoNome = produto.item.toLowerCase()
-      return (produtoNome.indexOf(this.state.inputText.toLowerCase()) > -1)
-    })
-    
+      .filter((produto) => {
+        return this.state.inputValueMin > 0
+          ? produto.price > this.state.inputValueMin
+          : produto;
+      })
+      .filter((produto) => {
+        return this.state.inputValueMax < Infinity
+          ? produto.price < this.state.inputValueMax
+          : produto;
+      })
+      .filter((produto) => {
+        const produtoNome = produto.item.toLowerCase();
+        return produtoNome.indexOf(this.state.inputText.toLowerCase()) > -1;
+      });
+
     // console.log(filter)
     // return (filter)
-  }
- 
+  };
+
   cartVisible = () => {
     this.setState({
       cartVisible: !this.state.cartVisible,
     });
-   
-  
   };
 
-  addCartItem = (e) =>{
-    console.log(e.key)
-
-  }
+  addCartItem = (e) => {
+    console.log(e.key);
+  };
 
   render() {
-    const listaFiltrada = this.getFilterAddLista()
+    const listaFiltrada = this.getFilterAddLista();
     const itemList = listaFiltrada.map((item) => {
       return (
         <div key={item.id}>
-          <Cards 
-          
+          <Cards
             key={item.id}
             itemPhoto={item.img}
             itemName={item.item}
             priceItem={item.price}
             addCartItem={this.addCartItem}
-            />
+          />
         </div>
       );
-    })
-    
+    });
+
     return (
-      <Container >
+      <div className="App">
+        <Container cartVisible={this.state.cartVisible}>
           <InputsFilters>
             <Texts>Valor Mínimo: </Texts>
             <input
@@ -205,26 +193,27 @@ class App extends React.Component {
               min="0"
               type="number"
             />
-  
+
             <Texts>Buscar Produto: </Texts>
             <input onChange={this.filterName} type="text" />
           </InputsFilters>
-            <CardContainer>
-              {/* <div>
+          <CardContainer>
+            {/* <div>
               <p>Quantidade de Produtos</p>
               <select>
                 <option value="crescente">Crescente</option>
                 <option value="decrescente">decrescente</option>
-              </select>
+                </select>
               </div> */}
-              
-              {itemList}
-              
-            </CardContainer>
-  
-        <InputsFilters></InputsFilters>
-      </Container>
-        // <CartButton onClick={this.cartVisible} />
+
+            {itemList}
+          </CardContainer>
+          {this.state.cartVisible && (
+          <InputsFilters></InputsFilters>)}
+        </Container>
+        {/* <CartButton showCart={this.cartVisible}></CartButton> */}
+        <button onClick={this.cartVisible}>Teste</button>
+      </div>
     );
   }
 }
