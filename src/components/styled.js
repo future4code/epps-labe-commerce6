@@ -2,12 +2,9 @@ import styled from "styled-components";
 
 export const InputsFilters = styled.div`
   display: block;
-  float: left;
   margin: 0.5em;
   text-align: left;
-  border: 1px solid black;
-  height: 50em;
-  width: 15.5em;
+  border: 1px solid blue;
   padding: 0.5em;
 `;
 
