@@ -16,7 +16,7 @@ export default class Cards extends React.Component {
           <p>{this.props.itemName}</p>
           <p>R$ {this.props.priceItem}</p>
           
-          <ButtonAddCar onClick={this.props.addCartItem}>Adicionar ao carrinho</ButtonAddCar>
+          <ButtonAddCar onClick={() => this.props.addCartItem(this.props.id)}>Adicionar ao carrinho</ButtonAddCar>
         </ItemCard>
 
       </ContainerCards>
