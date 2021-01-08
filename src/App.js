@@ -4,7 +4,7 @@ import "./App.css";
 import Cards from "./components/Cards";
 import { InputsFilters, Texts } from "./components/styled";
 import styled from "styled-components";
-import CartButton from "./components/Button";
+// import CartButton from "./components/Button";
 
 const Container = styled.div`
   width: 99.8%;
@@ -89,18 +89,6 @@ class App extends React.Component {
       inputValueMin: valueMin,
     });
 
-    // const filterValueMin = this.state.itemCard.filter((produto) =>{
-
-    //   return(produto.price >= valueMin )
-
-    // })
-
-    // this.setState({
-    //   itemCard: filterValueMin
-    // })
-    // console.log(valueMin)
-    // console.log(this.state.inputValueMin)
-    // console.log(filterValueMin)
   };
 
   onChangeValueMax = (e) => {
@@ -109,14 +97,6 @@ class App extends React.Component {
       inputValueMax: valueMax,
     });
 
-    // const filterValueMax = this.state.itemCard.filter((produto) =>{
-    //   console.log(produto)
-    //   return(console.log(produto.price < valueMax))
-    // })
-
-    // this.setState({
-    //   itemCard: filterValueMax
-    // })
   };
 
   filterName = (e) => {
@@ -155,8 +135,30 @@ class App extends React.Component {
     });
   };
 
-  addCartItem = (e) => {
-    console.log(e.key);
+  addCartItem = (id) => {
+    const addItem = this.state.itemCard.map((item) => {
+      if(item.id === id){
+       
+        const newItem = {
+          // ...item,
+          id: item.id,
+          nome: item.item,
+          price: item.price
+        }
+        return  console.log(item.nome)
+      }else {
+        return this.state.cart
+      }
+      
+    })
+
+    this.setState({
+      cart: addItem
+    })
+
+    // console.log(this.state.cart)
+    
+    
   };
 
   render() {
@@ -165,7 +167,7 @@ class App extends React.Component {
       return (
         <div key={item.id}>
           <Cards
-            key={item.id}
+            id={item.id}
             itemPhoto={item.img}
             itemName={item.item}
             priceItem={item.price}
@@ -174,6 +176,14 @@ class App extends React.Component {
         </div>
       );
     });
+
+
+    // const cartList = this.state.cart.map((item) =>{
+    //   return(
+    //     console.log(item)
+    //   )
+      
+    // })
 
     return (
       <div className="App">
