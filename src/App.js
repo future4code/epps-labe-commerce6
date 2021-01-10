@@ -144,18 +144,16 @@ class App extends React.Component {
     });
   };
 
-  removeProduto = (key) =>{
-    // const novoCarrinho = [...this.state.cart]
-    // const produtoRemove = this.state.cart.findIndex((item) =>{
-    //    item.produto.id === produto.id  
-    // })
-    // novoCarrinho.splice(produtoRemove, 1)
+  removeCartItem = (id) => {
+    const novoCarrinho = this.state.cart
+    const indexProduto = novoCarrinho.findIndex((item)=> {
+      return item.id === id
+    })
 
-    // this.setState({
-    //   cart: novoCarrinho
-    // })
+    novoCarrinho.splice(indexProduto, 1)
 
-    console.log(key)
+    this.setState({cart: novoCarrinho})
+    
   }
 
   render() {
@@ -169,6 +167,7 @@ class App extends React.Component {
             itemName={item.item}
             priceItem={item.price}
             addCartItem={this.addCartItem}
+            removeCartItem={this.removeCartItem}
           />
         </div>
       );
@@ -209,7 +208,7 @@ class App extends React.Component {
 
             {itemList}
           </CardContainer>
-          {this.state.cartVisible && ( <CartItem estado={this.state.cart} remove={this.removeProduto}/>)}
+          {this.state.cartVisible && ( <CartItem estado={this.state.cart} remove={this.removeCartItem}/>)}
         </Container>
         {/* <CartButton showCart={this.cartVisible}></CartButton> */}
         <button onClick={this.cartVisible}>Teste</button>
