@@ -16,9 +16,9 @@ export default class CartItem extends React.Component{
             console.log(produto.id)
             return(
                 <div key={produto.id}>
-                <p>Nome do Produto:{produto.item}</p>
+                <p>Produto: {produto.item}</p>
                 
-                <p> R$: {produto.price}</p>
+                <p> R$ {produto.price}</p>
                 <button onClick={() => this.props.remove(this.props.id)}>X</button>
                 </div>
             )
