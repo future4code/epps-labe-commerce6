@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const InputsFilters = styled.div`
   display: block;
-  margin: 0.5em;
+  margin: 0.5em 0.5em 0 0.5em;
   text-align: left;
-  border: 1px solid blue;
+  border: 1px solid black;
   padding: 0.5em;
 `;
 
@@ -12,7 +12,21 @@ export const Texts = styled.span`
   font-size: 19px;
 `;
 
+export const Container = styled.div`
+  width: 99.8%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: row;
+`;
 
+export const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+`;
 
 export const ContainerCards = styled.div`
   margin-top: 0.5em;
