@@ -1,28 +1,13 @@
 import React from "react";
 import "./App.css";
-// import Filters from "./components/Filters";
 import Cards from "./components/Cards";
-import { InputsFilters, Texts } from "./components/styled";
-import styled from "styled-components";
+import {
+  InputsFilters,
+  Container,
+  CardContainer,
+  Texts,
+} from "./components/styled";
 import CartItem from "./components/CartItens";
-// import CartButton from "./components/Button";
-
-const Container = styled.div`
-  width: 99.8%;
-  height: 99vh;
-  padding: 0px;
-  margin: 0px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: row;
-  border: 1px solid red;
-`;
-
-const CardContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 10px;
-`;
 
 class App extends React.Component {
   state = {
@@ -30,50 +15,50 @@ class App extends React.Component {
       {
         id: 1,
         img: "https://picsum.photos/300/300?a=1",
-        item: `Teste`,
+        item: `Item A`,
         price: 1,
       },
       {
         id: 2,
         img: "https://picsum.photos/300/300?a=2",
-        item: `juliana`,
+        item: `Item B`,
         price: 2000,
       },
       {
         id: 3,
         img: "https://picsum.photos/300/300?a=3",
-        item: `Ana`,
+        item: `Item C`,
         price: 25.5,
       },
       {
         id: 4,
         img: "https://picsum.photos/300/300?a=4",
-        item: `Felipe`,
+        item: `Item D`,
         price: 25.95,
       },
       {
         id: 5,
 
         img: "https://picsum.photos/300/300?a=5",
-        item: `Labenu`,
+        item: `Item E`,
         price: 789.87,
       },
       {
         id: 6,
         img: "https://picsum.photos/300/300?a=6",
-        item: `Amanda`,
+        item: `Item F`,
         price: 453.28,
       },
       {
         id: 7,
         img: "https://picsum.photos/300/300?a=7",
-        item: `Laís`,
+        item: `Item G`,
         price: 236.63,
       },
       {
         id: 8,
         img: "https://picsum.photos/300/300?a=8",
-        item: `Leticia`,
+        item: `Item H`,
         price: 456.98,
       },
     ],
@@ -103,8 +88,6 @@ class App extends React.Component {
     this.setState({
       inputText: valueText,
     });
-
-    console.log(valueText);
   };
 
   getFilterAddLista = () => {
@@ -123,9 +106,6 @@ class App extends React.Component {
         const produtoNome = produto.item.toLowerCase();
         return produtoNome.indexOf(this.state.inputText.toLowerCase()) > -1;
       });
-
-    // console.log(filter)
-    // return (filter)
   };
 
   cartVisible = () => {
@@ -145,16 +125,15 @@ class App extends React.Component {
   };
 
   removeCartItem = (id) => {
-    const novoCarrinho = this.state.cart
-    const indexProduto = novoCarrinho.findIndex((item)=> {
-      return item.id === id
-    })
+    const novoCarrinho = this.state.cart;
+    const indexProduto = novoCarrinho.findIndex((item) => {
+      return item.id === id;
+    });
 
-    novoCarrinho.splice(indexProduto, 1)
+    novoCarrinho.splice(indexProduto, 1);
 
-    this.setState({cart: novoCarrinho})
-    
-  }
+    this.setState({ cart: novoCarrinho });
+  };
 
   render() {
     const listaFiltrada = this.getFilterAddLista();
@@ -172,8 +151,6 @@ class App extends React.Component {
         </div>
       );
     });
-
-    // console.log(this.state.cart)
 
     return (
       <div className="App">
@@ -208,13 +185,14 @@ class App extends React.Component {
 
             {itemList}
           </CardContainer>
-          {this.state.cartVisible && ( <CartItem estado={this.state.cart} remove={this.removeCartItem}/>)}
+          {this.state.cartVisible && (
+            <CartItem estado={this.state.cart} remove={this.removeCartItem} />
+          )}
         </Container>
         {/* <CartButton showCart={this.cartVisible}></CartButton> */}
-        <button onClick={this.cartVisible}>Teste</button>
+        <button id="buttonCart" onClick={this.cartVisible}>Carrinho</button>
       </div>
     );
-
   }
 }
 
